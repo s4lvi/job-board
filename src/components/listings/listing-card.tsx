@@ -10,6 +10,8 @@ type ListingCardProps = {
   budgetFixed?: number | null;
   budgetMin?: number | null;
   budgetMax?: number | null;
+  hourlyRate?: number | null;
+  budgetKind?: string | null;
   location?: string | null;
   isRemote: boolean;
   deadline?: string | null;
@@ -30,14 +32,16 @@ const typeVariants = {
   BOUNTY: "success",
 } as const;
 
-export default function ListingCard({ id, title, type, budgetFixed, budgetMin, budgetMax, location, isRemote, deadline, tags, createdAt, user, category, _count }: ListingCardProps) {
-  const budget = budgetFixed
-    ? formatCurrency(budgetFixed)
-    : budgetMin && budgetMax
-      ? `${formatCurrency(budgetMin)} - ${formatCurrency(budgetMax)}`
-      : budgetMin
-        ? `From ${formatCurrency(budgetMin)}`
-        : null;
+export default function ListingCard({ id, title, type, budgetFixed, budgetMin, budgetMax, hourlyRate, budgetKind, location, isRemote, deadline, tags, createdAt, user, category, _count }: ListingCardProps) {
+  const budget = budgetKind === "hourly" && hourlyRate
+    ? `${formatCurrency(hourlyRate)}/hr`
+    : budgetFixed
+      ? formatCurrency(budgetFixed)
+      : budgetMin && budgetMax
+        ? `${formatCurrency(budgetMin)} - ${formatCurrency(budgetMax)}`
+        : budgetMin
+          ? `From ${formatCurrency(budgetMin)}`
+          : null;
 
   return (
     <Link href={`/listings/${id}`} className="group block">

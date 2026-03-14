@@ -109,6 +109,8 @@ model User {
   bio              String?   @db.Text
   title            String?
   location         String?
+  chapter          String?
+  membershipLevel  String?
   role             UserRole  @default(SEEKER)
   stripeAccountId  String?
   stripeCustomerId String?
@@ -143,10 +145,12 @@ model Listing {
   description String        @db.Text
   type        ListingType
   status      ListingStatus @default(DRAFT)
-  budgetMin   Decimal?      @db.Decimal(10, 2)
-  budgetMax   Decimal?      @db.Decimal(10, 2)
-  budgetFixed Decimal?      @db.Decimal(10, 2)
-  location    String?
+  budgetMin    Decimal?      @db.Decimal(10, 2)
+  budgetMax    Decimal?      @db.Decimal(10, 2)
+  budgetFixed  Decimal?      @db.Decimal(10, 2)
+  hourlyRate   Decimal?      @db.Decimal(10, 2)
+  budgetKind   String?       // "fixed", "range", "hourly"
+  location     String?
   isRemote    Boolean       @default(false)
   deadline    DateTime?
   tags        String[]

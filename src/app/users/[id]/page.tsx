@@ -68,6 +68,12 @@ export default async function UserProfilePage({ params }: Props) {
             </div>
             {user.title && <p className="text-white/50 text-sm">{user.title}</p>}
             {user.location && <p className="text-white/30 text-xs mt-1">{user.location}</p>}
+            {(user.chapter || user.membershipLevel) && (
+              <div className="flex items-center gap-3 mt-2">
+                {user.chapter && <Badge variant="primary">{user.chapter}</Badge>}
+                {user.membershipLevel && <Badge variant="accent">{user.membershipLevel}</Badge>}
+              </div>
+            )}
             {user.bio && <p className="text-white/50 text-sm mt-3 leading-relaxed">{user.bio}</p>}
 
             <div className="flex items-center gap-6 mt-4 text-xs text-white/40">
@@ -99,6 +105,8 @@ export default async function UserProfilePage({ params }: Props) {
                 budgetFixed={listing.budgetFixed ? Number(listing.budgetFixed) : null}
                 budgetMin={listing.budgetMin ? Number(listing.budgetMin) : null}
                 budgetMax={listing.budgetMax ? Number(listing.budgetMax) : null}
+                hourlyRate={listing.hourlyRate ? Number(listing.hourlyRate) : null}
+                budgetKind={listing.budgetKind}
                 location={listing.location}
                 isRemote={listing.isRemote}
                 deadline={listing.deadline?.toISOString() ?? null}

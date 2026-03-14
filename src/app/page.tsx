@@ -135,6 +135,8 @@ export default async function HomePage() {
                   budgetFixed={listing.budgetFixed ? Number(listing.budgetFixed) : null}
                   budgetMin={listing.budgetMin ? Number(listing.budgetMin) : null}
                   budgetMax={listing.budgetMax ? Number(listing.budgetMax) : null}
+                  hourlyRate={listing.hourlyRate ? Number(listing.hourlyRate) : null}
+                  budgetKind={listing.budgetKind}
                   location={listing.location}
                   isRemote={listing.isRemote}
                   deadline={listing.deadline?.toISOString() ?? null}

@@ -14,6 +14,8 @@ async function updateProfile(formData: FormData) {
       name: formData.get("name") as string,
       title: (formData.get("title") as string) || null,
       location: (formData.get("location") as string) || null,
+      chapter: (formData.get("chapter") as string) || null,
+      membershipLevel: (formData.get("membershipLevel") as string) || null,
       bio: (formData.get("bio") as string) || null,
     },
   });
@@ -72,6 +74,34 @@ export default async function ProfileSettingsPage() {
             className="input-field"
             placeholder="e.g. Detroit, MI"
           />
+        </div>
+
+        <div>
+          <label className="text-xs font-bold uppercase tracking-wider text-white/60 block mb-2">
+            Chapter Affiliation
+          </label>
+          <input
+            type="text"
+            name="chapter"
+            defaultValue={user.chapter || ""}
+            className="input-field"
+            placeholder="e.g. ACP Michigan, ACP Ohio"
+          />
+        </div>
+
+        <div>
+          <label className="text-xs font-bold uppercase tracking-wider text-white/60 block mb-2">
+            Membership Level
+          </label>
+          <select
+            name="membershipLevel"
+            defaultValue={user.membershipLevel || ""}
+            className="input-field"
+          >
+            <option value="">Select level (optional)</option>
+            <option value="Cadre">Cadre</option>
+            <option value="Reserve">Reserve</option>
+          </select>
         </div>
 
         <div>

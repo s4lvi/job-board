@@ -36,13 +36,15 @@ export default async function ListingDetailPage({ params }: Props) {
   const session = await auth();
   const isOwner = session?.user?.id === listing.userId;
 
-  const budget = listing.budgetFixed
-    ? formatCurrency(Number(listing.budgetFixed))
-    : listing.budgetMin && listing.budgetMax
-      ? `${formatCurrency(Number(listing.budgetMin))} - ${formatCurrency(Number(listing.budgetMax))}`
-      : listing.budgetMin
-        ? `From ${formatCurrency(Number(listing.budgetMin))}`
-        : null;
+  const budget = listing.budgetKind === "hourly" && listing.hourlyRate
+    ? `${formatCurrency(Number(listing.hourlyRate))}/hr`
+    : listing.budgetFixed
+      ? formatCurrency(Number(listing.budgetFixed))
+      : listing.budgetMin && listing.budgetMax
+        ? `${formatCurrency(Number(listing.budgetMin))} - ${formatCurrency(Number(listing.budgetMax))}`
+        : listing.budgetMin
+          ? `From ${formatCurrency(Number(listing.budgetMin))}`
+          : null;
 
   let hasApplied = false;
   if (session?.user && !isOwner) {

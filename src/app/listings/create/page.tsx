@@ -25,6 +25,7 @@ export default function CreateListingPage() {
     budgetFixed: "",
     budgetMin: "",
     budgetMax: "",
+    hourlyRate: "",
     location: "",
     isRemote: false,
     deadline: "",
@@ -196,7 +197,7 @@ export default function CreateListingPage() {
               Budget Type
             </label>
             <div className="flex gap-2">
-              {["fixed", "range"].map((bt) => (
+              {["fixed", "range", "hourly"].map((bt) => (
                 <button
                   key={bt}
                   onClick={() => update("budgetType", bt)}
@@ -212,7 +213,21 @@ export default function CreateListingPage() {
             </div>
           </div>
 
-          {form.budgetType === "fixed" ? (
+          {form.budgetType === "hourly" ? (
+            <div>
+              <label className="text-xs font-bold uppercase tracking-wider text-white/60 block mb-2">
+                Hourly Rate ($)
+              </label>
+              <input
+                type="number"
+                value={form.hourlyRate}
+                onChange={(e) => update("hourlyRate", e.target.value)}
+                className="input-field"
+                placeholder="25"
+                min="0"
+              />
+            </div>
+          ) : form.budgetType === "fixed" ? (
             <div>
               <label className="text-xs font-bold uppercase tracking-wider text-white/60 block mb-2">
                 Budget ($)
@@ -280,8 +295,9 @@ export default function CreateListingPage() {
             <p className="text-white/50 text-sm whitespace-pre-wrap">{form.description}</p>
 
             <div className="flex flex-wrap gap-4 text-sm text-white/40 pt-4 border-t border-white/5">
-              {form.budgetFixed && <span className="text-accent font-bold">${form.budgetFixed}</span>}
-              {form.budgetMin && form.budgetMax && <span className="text-accent font-bold">${form.budgetMin} - ${form.budgetMax}</span>}
+              {form.budgetType === "hourly" && form.hourlyRate && <span className="text-accent font-bold">${form.hourlyRate}/hr</span>}
+              {form.budgetType === "fixed" && form.budgetFixed && <span className="text-accent font-bold">${form.budgetFixed}</span>}
+              {form.budgetType === "range" && form.budgetMin && form.budgetMax && <span className="text-accent font-bold">${form.budgetMin} - ${form.budgetMax}</span>}
               {form.isRemote && <span>Remote</span>}
               {form.location && !form.isRemote && <span>{form.location}</span>}
               {form.deadline && <span>Due {form.deadline}</span>}

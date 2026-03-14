@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -14,14 +15,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="flex gap-[2px]">
-                <div className="w-1 h-6 bg-primary" />
-                <div className="w-1 h-6 bg-primary" />
-                <div className="w-1 h-6 bg-primary" />
-              </div>
+            <div className="flex items-center space-x-4 mb-4">
+              <Image src="/logo.svg" alt="ACP" width={56} height={47} className="h-12 w-auto" />
               <span className="font-black text-lg uppercase tracking-[0.15em]">
-                ACP <span className="text-primary">Jobs</span>
+                <span className="text-primary">Jobs</span>
               </span>
             </div>
             <p className="text-white/40 text-sm leading-relaxed max-w-sm">

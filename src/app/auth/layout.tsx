@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -6,13 +7,9 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-3">
-            <div className="flex gap-[2px]">
-              <div className="w-1 h-6 bg-primary" />
-              <div className="w-1 h-6 bg-primary" />
-              <div className="w-1 h-6 bg-primary" />
-            </div>
+            <Image src="/logo.svg" alt="ACP" width={40} height={33} className="h-8 w-auto" />
             <span className="font-black text-lg uppercase tracking-[0.15em]">
-              ACP <span className="text-primary">Jobs</span>
+              <span className="text-primary">Jobs</span>
             </span>
           </Link>
         </div>
