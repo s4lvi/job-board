@@ -14,7 +14,7 @@ import type {
   ContractStatus,
   EscrowStatus,
   UserRole,
-} from "@/generated/prisma/client";
+} from "@prisma/client";
 
 export type {
   User,

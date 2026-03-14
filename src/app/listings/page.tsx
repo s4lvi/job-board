@@ -2,8 +2,8 @@ import { prisma } from "@/lib/prisma";
 import ListingCard from "@/components/listings/listing-card";
 import ListingFilters from "@/components/listings/listing-filters";
 import Pagination from "@/components/ui/pagination";
-import type { ListingStatus, ListingType } from "@/generated/prisma/client";
-import type { Prisma } from "@/generated/prisma/client";
+import type { ListingStatus, ListingType } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 
 const ITEMS_PER_PAGE = 12;
 

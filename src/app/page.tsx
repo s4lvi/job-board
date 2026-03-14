@@ -24,7 +24,8 @@ async function getFeaturedListings() {
       take: 6,
     });
     return listings;
-  } catch {
+  } catch (e) {
+    console.error("getFeaturedListings error:", e);
     return [];
   }
 }
@@ -37,7 +38,8 @@ async function getStats() {
       prisma.contract.count({ where: { status: "COMPLETED" } }),
     ]);
     return { listings, users, contracts };
-  } catch {
+  } catch (e) {
+    console.error("getStats error:", e);
     return { listings: 0, users: 0, contracts: 0 };
   }
 }
