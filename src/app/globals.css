@@ -1,26 +1,161 @@
+@import url('https://fonts.cdnfonts.com/css/eurostile');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --primary: #c11616;
+  --primary-dark: #8c0f0f;
+  --accent: #ffd600;
+  --surface: rgba(17, 17, 17, 0.70);
+  --surface-light: rgba(26, 26, 26, 0.75);
+  --muted: #666666;
+  --success: #22c55e;
+  --danger: #ef4444;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-surface-light: var(--surface-light);
+  --color-muted: var(--muted);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --font-sans: 'Eurostile', 'Arial Black', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  letter-spacing: 0.02em;
 }
 
 body {
-  background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Eurostile', 'Arial Black', sans-serif;
+  background: var(--background);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Buttons — angular left edge, echoing the logo's cut letterforms */
+.btn-primary {
+  @apply bg-primary text-white px-7 py-3 font-black uppercase tracking-widest text-sm hover:brightness-125 transition-all duration-200 inline-block cursor-pointer;
+  clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+}
+
+.btn-secondary {
+  @apply border border-white/30 text-white px-7 py-3 font-black uppercase tracking-widest text-sm hover:bg-white/10 transition-all duration-200 inline-block cursor-pointer;
+  clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+}
+
+.btn-accent {
+  @apply bg-accent text-black px-7 py-3 font-black uppercase tracking-widest text-sm hover:brightness-110 transition-all duration-200 inline-block cursor-pointer;
+  clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+}
+
+.btn-ghost {
+  @apply text-white/60 px-7 py-3 font-black uppercase tracking-widest text-sm hover:text-white hover:bg-white/5 transition-all duration-200 inline-block cursor-pointer;
+}
+
+.btn-danger {
+  @apply bg-danger text-white px-7 py-3 font-black uppercase tracking-widest text-sm hover:brightness-125 transition-all duration-200 inline-block cursor-pointer;
+  clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+}
+
+.btn-sm {
+  @apply px-4 py-2 text-xs;
+}
+
+.btn-lg {
+  @apply px-10 py-4 text-base;
+}
+
+/* Horizontal stripe decoration — echoes the logo's stacked flag bars */
+.stripe-bar {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--primary) 0px,
+    var(--primary) 4px,
+    transparent 4px,
+    transparent 10px
+  );
+}
+
+/* Angular card cut — top-left corner chamfer like logo letterforms */
+.card-cut {
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+}
+
+/* Dual-corner angular cut */
+.angular-cut {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+}
+
+/* Section divider — three stacked red bars */
+.divider-bars {
+  display: flex;
+  gap: 6px;
+  flex-direction: column;
+}
+.divider-bars span {
+  height: 3px;
+  background: var(--primary);
+}
+
+/* Top accent bars — three thin horizontal red bars */
+.top-bars {
+  display: flex;
+  gap: 3px;
+}
+.top-bars::before,
+.top-bars::after,
+.top-bars span {
+  content: '';
+  height: 3px;
+  background: var(--primary);
+  flex: 1;
+}
+
+/* Form inputs */
+.input-field {
+  @apply w-full bg-surface border border-white/10 text-white px-4 py-3 text-sm tracking-wider placeholder:text-white/30 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors;
+}
+
+.input-field-cut {
+  @apply w-full bg-surface border border-white/10 text-white px-4 py-3 text-sm tracking-wider focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors;
+  clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%, 0 8px);
+}
+
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}
+
+/* Loading skeleton pulse */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
 }
