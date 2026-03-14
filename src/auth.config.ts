@@ -42,7 +42,7 @@ export const authConfig: NextAuthConfig = {
 
       const publicRoutes = ["/", "/listings", "/auth/login", "/auth/register", "/auth/forgot-password", "/auth/reset-password", "/auth/verify-email"];
       const isPublicRoute = publicRoutes.some(
-        (route) => pathname === route || pathname.startsWith("/listings/") || pathname.startsWith("/users/") || pathname.startsWith("/api/auth") || pathname.startsWith("/api/stripe/webhook")
+        (route) => pathname === route || pathname.startsWith("/listings/") || pathname.startsWith("/users/") || pathname.startsWith("/api/")
       );
 
       if (isPublicRoute) return true;
